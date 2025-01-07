@@ -1,6 +1,9 @@
 // Import the necessary functions from Firebase SDK
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+// import { db } from './firebase'; // Adjust the path based on where you save the file
+import { collection, getDocs } from 'firebase/firestore';
+
 
 // Your Firebase configuration
 const firebaseConfig = {
@@ -18,6 +21,16 @@ const app = initializeApp(firebaseConfig);
 
 // Initialize Firestore
 const db = getFirestore(app);
+
+
+// fetch data from Firestore
+const fetchData = async () => {
+  const querySnapshot = await getDocs(collection(db, 'your-collection-name'));
+  querySnapshot.forEach((doc) => {
+      console.log(`${doc.id} => ${JSON.stringify(doc.data())}`);
+  });
+};
+
 
 // Export the db object for use in other files
 export { db };
