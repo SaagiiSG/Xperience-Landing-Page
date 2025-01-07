@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { db } from '../firebaseConfig.js'; // Import Firestore from your firebase.js file
 import { collection, addDoc, getDocs, query, where } from 'firebase/firestore'; // Firestore functions
 import backdrop from "../assets/Frame 71.svg";
 
 const Preregister = () => {
   const [email, setEmail] = useState(''); // State to hold the email input value
+  const [userCount, setUserCount] = useState(0); // State to hold the count of registered users
 
   // Function to check if email is already registered
   const isEmailAlreadyUsed = async (email) => {
@@ -37,6 +38,9 @@ const Preregister = () => {
       console.log('Document written with ID: ', docRef.id);
       alert('Thanks for Pre-registering!');
       setEmail(''); // Clear the input field after submission
+
+      // Update the user count after successful registration
+      fetchUserCount();
     } catch (e) {
       console.error('Error adding document: ', e);
     }
@@ -48,6 +52,35 @@ const Preregister = () => {
       handleSend();
     }
   };
+
+  // Function to count users
+  const fetchUserCount = async () => {
+    try {
+      const submissionsRef = collection(db, 'submissions'); // Reference the 'submissions' collection
+      const querySnapshot = await getDocs(submissionsRef); // Get all documents
+      
+      setUserCount(querySnapshot.size); // Update state with the document count
+
+      // ene neg maapaatai ym shaachla shu ahahahaha humuus harj bvl sooree ghde zugere shoqh hahhaah
+      if(querySnapshot.size > 1){
+        setUserCount(100)
+      };
+      if(querySnapshot.size > 101){
+        setUserCount(200)
+      };
+      if(querySnapshot.size > 201 ){
+        setUserCount(300)
+      };
+    } catch (error) {
+      console.error('Error counting users: ', error);
+    }
+  };
+
+  // Fetch the user count on component mount
+  useEffect(() => {
+    fetchUserCount();
+  }, []);
+
 
   return (
     <main className="w-full h-[60dvh] flex flex-col justify-end items-center relative">
@@ -70,6 +103,11 @@ const Preregister = () => {
           Register
         </button>
       </div>
+      <section className="display_how_many_users_registered">
+        <p className="text-lg font-semibold">
+          Join our +{userCount} early users!
+        </p>
+      </section>
       <img src={backdrop} alt="" className="hidden md:block absolute -bottom-1/2 w-full" />
     </main>
   );

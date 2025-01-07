@@ -31,6 +31,5 @@ const fetchData = async () => {
   });
 };
 
-
 // Export the db object for use in other files
 export { db };
