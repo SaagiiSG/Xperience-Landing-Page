@@ -10,7 +10,7 @@ const WhatIsXP = () => {
     triggerOnce: true, 
     threshold: 0.1,
   });
-
+~
   
   useEffect(() => {
     if (inView) {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { db } from '../firebaseConfig.js'; // Import Firestore from your firebase.js file
 import { collection, addDoc, getDocs, query, where } from 'firebase/firestore'; // Firestore functions
 import backdrop from "../assets/Frame 71.svg";
+import { motion } from 'framer-motion';
 
 const Preregister = () => {
   const [email, setEmail] = useState(''); // State to hold the email input value
@@ -84,10 +85,17 @@ const Preregister = () => {
 
   return (
     <main className="w-full h-[60dvh] flex flex-col justify-end items-center relative">
-      <header className="font-bold text-3xl absolute top-3 w-full text-center py-3">
-        Register early to be demo tester
+      <header className="flex flex-col gap-12 font-bold text-3xl absolute top-3 w-full text-center py-3">
+        
+        <h1 className=''>Want a head start ?</h1>
+        <motion.p className="text-2xl font-semibold">
+          Join our +{userCount} early users!
+        </motion.p>
       </header>
-      <div className="flex mb-8 z-40">
+     
+      <div className="flex flex-col items-center justify-center gap-3 mb-8 z-40">
+     
+        <div className='flex'>
         <input
           type="email"
           placeholder="Enter your email"
@@ -102,11 +110,10 @@ const Preregister = () => {
         >
           Register
         </button>
+        </div>
       </div>
       <section className="display_how_many_users_registered">
-        <p className="text-lg font-semibold">
-          Join our +{userCount} early users!
-        </p>
+        
       </section>
       <img src={backdrop} alt="" className="hidden md:block absolute -bottom-1/2 w-full" />
     </main>
