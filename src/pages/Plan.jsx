@@ -35,7 +35,7 @@ const Plan = () => {
       <div ref={ref} className="w-full h-auto md:h-4/5 flex flex-col md:flex-row items-start justify-start md:justify-center gap-5 py-4">
         <motion.div
           className="w-[90%] md:w-1/4 h-[500px] border-2 border-[#303030] rounded-3xl relative overflow-hidden"
-          custom={0} // Delay for this card
+          custom={0} 
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
           variants={cardVariants}
@@ -54,7 +54,7 @@ const Plan = () => {
         </motion.div>
         <motion.div
           className="w-[90%] md:w-1/4 h-[500px] border-2 border-[#303030] rounded-3xl relative overflow-hidden"
-          custom={1} // Delay for this card
+          custom={1} 
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
           variants={cardVariants}
@@ -73,7 +73,7 @@ const Plan = () => {
         </motion.div>
         <motion.div
           className="w-[90%] md:w-1/4 h-[500px] border-2 border-[#303030] rounded-3xl relative overflow-hidden"
-          custom={2} // Delay for this card
+          custom={2} 
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
           variants={cardVariants}
@@ -94,7 +94,7 @@ const Plan = () => {
         </motion.div>
         <motion.div
           className="w-[90%] md:w-1/4 h-[500px] border-2 bg-[#121212] text-[#faf9f6] border-[#303030] rounded-3xl relative overflow-hidden"
-          custom={3} // Delay for this card
+          custom={3} 
           initial="hidden"
           animate={inView ? 'visible' : 'hidden'}
           variants={cardVariants}
